@@ -1,9 +1,19 @@
 <template>
-  <require from='./nav-bar'></require>
+  <section>
+    <require from="./value_converters/filter_by_property"></require>
 
-  <nav-bar router.bind="router"></nav-bar>
+    <form role="form" submit.delegate="search()">
+      <div class="form-group">
+        <input type="text" value.bind="searchText" class="form-control" id="fn"
+        placeholder="Digite o nome da raça">
+      </div>
+    </form>
 
-  <div class="page-host">
-    <router-view></router-view>
-  </div>
+    <ul>
+      <li repeat.for="alien of aliens | filterByProperty: 'name' : searchText">
+        ${alien.name}
+      </li>
+    </ul>
+
+  </section>
 </template>
